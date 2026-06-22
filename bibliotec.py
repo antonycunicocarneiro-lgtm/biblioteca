@@ -1,32 +1,33 @@
-# Classe que representa um livro na biblioteca.
+# Classe que define 'Livro'
 class Livro:
-    # Inicializa um novo livro com título, autor, ano, código e status.
+    # O método __init__ inicializa os atributos do livro quando um novo objeto é criado
     def __init__(self, titulo, autor, ano, codigo, status):
-        self.titulo = titulo
-        self.autor = autor
-        self.ano = ano
-        self.codigo = codigo
-        self.status = status
+        self.titulo = titulo  # Armazena o nome da obra
+        self.autor = autor    # Armazena o nome do autor
+        self.ano = ano        # Armazena o ano de lançamento
+        self.codigo = codigo  # Armazena o ID
+        self.status = status  # Armazena se está 'disponível' ou 'emprestado'
 
 # Cadastrar livro
 def cadastrar_livro(biblioteca):
     print("\n--- CADASTRAR LIVRO ---")
     codigo = input("Código (ID único): ")
    
-    # Verifica se o código já existe
+    # Percorre a lista para não existir dois livros com o mesmo código
     ja_existe = 0
     for livro in biblioteca:
         if livro.codigo == codigo:
             ja_existe = 1
             break
            
+    # Se o código for único, solicita os dados e adiciona o novo objeto à lista
     if ja_existe == 1:
         print("Erro: Já existe um livro com este código.")
     else:
-        # Solicita os dados do novo livro e o adiciona à biblioteca
         titulo = input("Título: ")
         autor = input("Autor (apenas o primeiro nome): ")
         ano = input("Ano de publicação: ")
+        # Cria a instância da classe Livro e a insere na lista 'biblioteca'
         novo_livro = Livro(titulo, autor, ano, codigo, "disponível")
         biblioteca.append(novo_livro)
         print("Livro cadastrado com sucesso!")
@@ -39,6 +40,7 @@ def consultar_livro(biblioteca):
     opcao = input("Opção: ")
    
     encontrado = 0
+    # Opção 1: Busca linear comparando o código informado com o atributo 'codigo' de cada objeto
     if opcao == "1":
         cod_busca = input("Digite o código: ")
         for livro in biblioteca:
@@ -46,16 +48,19 @@ def consultar_livro(biblioteca):
                 print(f"Livro encontrado: {livro.titulo} - {livro.autor} ({livro.status})")
                 encontrado = 1
                 break
-    elif opcao == "2":
-        aut_busca = input("Digite o autor: ")
-        for livro in biblioteca:
-            if livro.autor == aut_busca:
-                print(f"Obra: {livro.titulo} | Código: {livro.codigo} | Status: {livro.status}")
-                encontrado = 1
     else:
-        print("Opção inválida.")
-        return
+        # Opção 2: Busca por autor (comparação exata de strings, sem .lower())
+        if opcao == "2":
+            aut_busca = input("Digite o autor: ")
+            for livro in biblioteca:
+                if livro.autor == aut_busca:
+                    print(f"Obra: {livro.titulo} | Código: {livro.codigo} | Status: {livro.status}")
+                    encontrado = 1
+        else:
+            print("Opção inválida.")
+            return
 
+    # Exibe mensagem caso nenhum registro satisfaça o critério de busca
     if encontrado == 0:
         print("Livro não encontrado")
 
@@ -64,7 +69,7 @@ def alterar_dados(biblioteca):
     print("\n--- ALTERAR DADOS ---")
     codigo = input("Digite o código do livro: ")
     achou = 0
-    # Busca o livro pelo código e atualiza seus dados
+    # Localiza o livro pelo código e permite a sobrescrita dos atributos de texto
     for livro in biblioteca:
         if livro.codigo == codigo:
             livro.titulo = input(f"Novo Título (atual: {livro.titulo}): ")
@@ -82,11 +87,13 @@ def remover_livro(biblioteca):
     print("\n--- REMOVER LIVRO ---")
     codigo = input("Digite o código para remover: ")
     posicao = -1
+    # Identifica o índice numérico do livro na lista para possibilitar a remoção
     for i in range(len(biblioteca)):
         if biblioteca[i].codigo == codigo:
             posicao = i
             break
            
+    # Se encontrado, usa o pop() para excluir o item da lista pelo índice
     if posicao != -1:
         biblioteca.pop(posicao)
         print("Livro removido com sucesso!")
@@ -95,22 +102,24 @@ def remover_livro(biblioteca):
 
 # Listar todos
 def listar_todos(biblioteca):
-    print("\n--- LISTAR TODOS OS LIVROS (ORDEM ALFABÉTICA) ---")
+    print("\n--- LISTAR TODOS OS LIVROS ---")
     
     if len(biblioteca) == 0:
         print("A biblioteca está vazia.")
         return
 
+    # Cria uma cópia da lista original para não alterar a ordem de inserção do acervo
     temp_lista = []
     for item in biblioteca:
         temp_lista.append(item)
 
-    # Implementação do Bubble Sort para ordenar por título
+    # Algoritmo Bubble Sort: compara pares adjacentes e os troca se estiverem fora de ordem
     n = len(temp_lista)
     i = 0
     while i < n - 1:
         j = 0
         while j < n - 1 - i:
+            # Compara os títulos para definir a ordem alfabética
             if temp_lista[j].titulo > temp_lista[j+1].titulo:
                 auxiliar = temp_lista[j]
                 temp_lista[j] = temp_lista[j+1]
@@ -118,6 +127,7 @@ def listar_todos(biblioteca):
             j = j + 1
         i = i + 1
 
+    # Exibe a lista já organizada
     for livro in temp_lista:
         print(f"Título: {livro.titulo} - Ano: {livro.ano}")
 
@@ -126,12 +136,12 @@ def realizar_emprestimo(biblioteca):
     print("\n--- REALIZAR EMPRÉSTIMO ---")
     codigo = input("Código do livro: ")
     achou = 0
-    # Busca o livro pelo código e tenta realizar o empréstimo
+    # Verifica se o livro existe e se o status atual permite o empréstimo
     for livro in biblioteca:
         if livro.codigo == codigo:
             achou = 1
             if livro.status == "disponível":
-                livro.status = "emprestado"
+                livro.status = "emprestado"  # Atualiza o estado do objeto
                 print("Empréstimo realizado!")
             else:
                 print("Livro já emprestado")
@@ -140,12 +150,12 @@ def realizar_emprestimo(biblioteca):
     if achou == 0:
         print("Livro não encontrado")
 
-# Realizar devolução
+# Realizar devolução e menu
 def realizar_devolucao(biblioteca):
     print("\n--- REALIZAR DEVOLUÇÃO ---")
     codigo = input("Código do livro: ")
     achou = 0
-    # Busca o livro pelo código e tenta realizar a devolução
+    # Localiza o livro e altera o status de volta para 'disponível'
     for livro in biblioteca:
         if livro.codigo == codigo:
             achou = 1
@@ -159,11 +169,12 @@ def realizar_devolucao(biblioteca):
     if achou == 0:
         print("Livro não encontrado")
 
-# Menu
+# Função que gerencia o fluxo principal do programa
 def menu_principal():
-    acervo = []  # Lista para armazenar os livros
-    rodando = 1  # Controle do loop do menu
+    acervo = []  # Lista que funcionará como banco de dados em memória
+    rodando = 1  # Variável que mantém o programa em execução
    
+    # Loop que exibe as opções e processa a entrada do usuário até que ele escolha sair
     while rodando == 1:
         print("\n=== SISTEMA DE CONTROLE DE BIBLIOTECA ===")
         print("1. Cadastrar livro")
@@ -177,7 +188,7 @@ def menu_principal():
        
         escolha = input("Selecione uma opção: ")
        
-        # Chama a função correspondente à escolha do usuário
+        # Estrutura de decisão para rotear a execução para a função correta
         if escolha == "1":
             cadastrar_livro(acervo)
         else:
@@ -201,10 +212,10 @@ def menu_principal():
                                 else:
                                     if escolha == "8":
                                         print("Finalizando programa...")
-                                        rodando = 0
+                                        rodando = 0  # Quebra a condição do loop while
                                     else:
                                         print("Opção inválida!")
 
-# Bloco principal de execução do script.
+# Inicia o programa chamando o menu principal
 if __name__ == "__main__":
     menu_principal()
