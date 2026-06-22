@@ -40,7 +40,7 @@ def consultar_livro(biblioteca):
     opcao = input("Opção: ")
    
     encontrado = 0
-    # Opção 1: Busca linear comparando o código informado com o atributo 'codigo' de cada objeto
+    # Opção 1: Busca o código informado
     if opcao == "1":
         cod_busca = input("Digite o código: ")
         for livro in biblioteca:
@@ -49,7 +49,7 @@ def consultar_livro(biblioteca):
                 encontrado = 1
                 break
     else:
-        # Opção 2: Busca por autor (comparação exata de strings, sem .lower())
+        # Opção 2: Busca por autor (comparação exata de strings
         if opcao == "2":
             aut_busca = input("Digite o autor: ")
             for livro in biblioteca:
@@ -93,7 +93,7 @@ def remover_livro(biblioteca):
             posicao = i
             break
            
-    # Se encontrado, utiliza o método pop() para excluir o item da lista pelo índice
+    # Se encontrado, usa o pop() para excluir o item da lista pelo índice
     if posicao != -1:
         biblioteca.pop(posicao)
         print("Livro removido com sucesso!")
@@ -108,12 +108,12 @@ def listar_todos(biblioteca):
         print("A biblioteca está vazia.")
         return
 
-    # Cria uma cópia da lista original para não alterar a ordem de inserção do acervo
+    # Cria uma cópia da lista original para não alterar a ordem de inserção do biblio
     temp_lista = []
     for item in biblioteca:
         temp_lista.append(item)
 
-    # Algoritmo Bubble Sort: compara pares adjacentes e os troca se estiverem fora de ordem
+    # compara pares adjacentes e os troca se estiverem fora de ordem
     n = len(temp_lista)
     i = 0
     while i < n - 1:
@@ -171,7 +171,7 @@ def realizar_devolucao(biblioteca):
 
 # Função que gerencia o fluxo principal do programa
 def menu_principal():
-    acervo = []  # Lista que funcionará como banco de dados em memória
+    biblio = []  # Lista que funcionará como banco de dados em memória
     rodando = 1  # Variável que mantém o programa em execução
    
     # Loop que exibe as opções e processa a entrada do usuário até que ele escolha sair
@@ -190,25 +190,25 @@ def menu_principal():
        
         # Estrutura de decisão para rotear a execução para a função correta
         if escolha == "1":
-            cadastrar_livro(acervo)
+            cadastrar_livro(biblio)
         else:
             if escolha == "2":
-                consultar_livro(acervo)
+                consultar_livro(biblio)
             else:
                 if escolha == "3":
-                    alterar_dados(acervo)
+                    alterar_dados(biblio)
                 else:
                     if escolha == "4":
-                        remover_livro(acervo)
+                        remover_livro(biblio)
                     else:
                         if escolha == "5":
-                            listar_todos(acervo)
+                            listar_todos(biblio)
                         else:
                             if escolha == "6":
-                                realizar_emprestimo(acervo)
+                                realizar_emprestimo(biblio)
                             else:
                                 if escolha == "7":
-                                    realizar_devolucao(acervo)
+                                    realizar_devolucao(biblio)
                                 else:
                                     if escolha == "8":
                                         print("Finalizando programa...")
