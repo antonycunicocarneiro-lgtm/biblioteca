@@ -54,7 +54,7 @@ def consultar_livro(biblioteca):
             aut_busca = input("Digite o autor: ")
             for livro in biblioteca:
                 if livro.autor == aut_busca:
-                    print(f"Obra: {livro.titulo} | Código: {livro.codigo} | Status: {livro.status}")
+                    print(f"Obra: {livro.titulo} - Código: {livro.codigo} - Status: {livro.status}")
                     encontrado = 1
         else:
             print("Opção inválida.")
