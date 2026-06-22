@@ -40,7 +40,7 @@ def consultar_livro(biblioteca):
     opcao = input("Opção: ")
    
     encontrado = 0
-    # Opção 1: Busca o código informado
+    # Busca o código informado
     if opcao == "1":
         cod_busca = input("Digite o código: ")
         for livro in biblioteca:
@@ -49,7 +49,7 @@ def consultar_livro(biblioteca):
                 encontrado = 1
                 break
     else:
-        # Opção 2: Busca por autor (comparação exata de strings
+        # Busca por autor
         if opcao == "2":
             aut_busca = input("Digite o autor: ")
             for livro in biblioteca:
@@ -60,7 +60,7 @@ def consultar_livro(biblioteca):
             print("Opção inválida.")
             return
 
-    # Exibe mensagem caso nenhum registro satisfaça o critério de busca
+    # Exibe mensagem caso nenhum registro de certo
     if encontrado == 0:
         print("Livro não encontrado")
 
@@ -69,7 +69,7 @@ def alterar_dados(biblioteca):
     print("\n*** ALTERAR DADOS ***")
     codigo = input("Digite o código do livro: ")
     achou = 0
-    # Localiza o livro pelo código e permite a sobrescrita dos atributos de texto
+    # Localiza o livro pelo código e permite a edite ele
     for livro in biblioteca:
         if livro.codigo == codigo:
             livro.titulo = input(f"Novo Título (atual: {livro.titulo}): ")
