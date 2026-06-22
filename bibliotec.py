@@ -1,4 +1,3 @@
-
 # Classe que representa um livro na biblioteca.
 class Livro:
     # Inicializa um novo livro com título, autor, ano, código e status.
@@ -50,7 +49,7 @@ def consultar_livro(biblioteca):
     elif opcao == "2":
         aut_busca = input("Digite o autor: ")
         for livro in biblioteca:
-            if livro.autor.lower() == aut_busca.lower():
+            if livro.autor == aut_busca:
                 print(f"Obra: {livro.titulo} | Código: {livro.codigo} | Status: {livro.status}")
                 encontrado = 1
     else:
