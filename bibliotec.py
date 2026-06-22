@@ -150,7 +150,7 @@ def realizar_emprestimo(biblioteca):
     if achou == 0:
         print("Livro não encontrado")
 
-# Realizar devolução e menu
+# Realizar devolução
 def realizar_devolucao(biblioteca):
     print("\n*** REALIZAR DEVOLUÇÃO ***")
     codigo = input("Código do livro: ")
