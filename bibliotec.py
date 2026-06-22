@@ -1,5 +1,4 @@
 
-biblioteca_comentada.py
 # Classe que representa um livro na biblioteca.
 class Livro:
     # Inicializa um novo livro com título, autor, ano, código e status.
