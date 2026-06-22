@@ -2,11 +2,11 @@
 class Livro:
     # O método __init__ inicializa os atributos do livro quando um novo objeto é criado
     def __init__(self, titulo, autor, ano, codigo, status):
-        self.titulo = titulo  # Armazena o nome da obra
-        self.autor = autor    # Armazena o nome do autor
-        self.ano = ano        # Armazena o ano de lançamento
-        self.codigo = codigo  # Armazena o identificador único (ID)
-        self.status = status  # Armazena se está 'disponível' ou 'emprestado'
+        self.titulo = titulo 
+        self.autor = autor    
+        self.ano = ano       
+        self.codigo = codigo  
+        self.status = status  
 
 # Cadastrar livro
 def cadastrar_livro(biblioteca):
