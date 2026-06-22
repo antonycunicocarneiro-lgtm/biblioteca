@@ -10,7 +10,7 @@ class Livro:
 
 # Cadastrar livro
 def cadastrar_livro(biblioteca):
-    print("\n--- CADASTRAR LIVRO ---")
+    print("\n*** CADASTRAR LIVRO ***")
     codigo = input("Código (ID único): ")
    
     # Percorre a lista para garantir que não existam dois livros com o mesmo código
@@ -34,7 +34,7 @@ def cadastrar_livro(biblioteca):
 
 # Consultar livro
 def consultar_livro(biblioteca):
-    print("\n--- CONSULTAR LIVRO ---")
+    print("\n*** CONSULTAR LIVRO ***")
     print("1. Por código")
     print("2. Por autor")
     opcao = input("Opção: ")
@@ -66,7 +66,7 @@ def consultar_livro(biblioteca):
 
 # Alterar dados
 def alterar_dados(biblioteca):
-    print("\n--- ALTERAR DADOS ---")
+    print("\n*** ALTERAR DADOS ***")
     codigo = input("Digite o código do livro: ")
     achou = 0
     # Localiza o livro pelo código e permite a sobrescrita dos atributos de texto
@@ -84,7 +84,7 @@ def alterar_dados(biblioteca):
 
 # Remover livro
 def remover_livro(biblioteca):
-    print("\n--- REMOVER LIVRO ---")
+    print("\n*** REMOVER LIVRO ***")
     codigo = input("Digite o código para remover: ")
     posicao = -1
     # Identifica o índice numérico do livro na lista para possibilitar a remoção
@@ -102,7 +102,7 @@ def remover_livro(biblioteca):
 
 # Listar todos
 def listar_todos(biblioteca):
-    print("\n--- LISTAR TODOS OS LIVROS (ORDEM ALFABÉTICA) ---")
+    print("\n*** LISTAR TODOS OS LIVROS (ORDEM ALFABÉTICA) ***")
     
     if len(biblioteca) == 0:
         print("A biblioteca está vazia.")
@@ -133,7 +133,7 @@ def listar_todos(biblioteca):
 
 # Realizar empréstimo
 def realizar_emprestimo(biblioteca):
-    print("\n--- REALIZAR EMPRÉSTIMO ---")
+    print("\n*** REALIZAR EMPRÉSTIMO ***")
     codigo = input("Código do livro: ")
     achou = 0
     # Verifica se o livro existe e se o status atual permite o empréstimo
@@ -152,7 +152,7 @@ def realizar_emprestimo(biblioteca):
 
 # Realizar devolução e menu
 def realizar_devolucao(biblioteca):
-    print("\n--- REALIZAR DEVOLUÇÃO ---")
+    print("\n*** REALIZAR DEVOLUÇÃO ***")
     codigo = input("Código do livro: ")
     achou = 0
     # Localiza o livro e altera o status de volta para 'disponível'
@@ -176,7 +176,7 @@ def menu_principal():
    
     # Loop que exibe as opções e processa a entrada do usuário até que ele escolha sair
     while rodando == 1:
-        print("\n=== SISTEMA DE CONTROLE DE BIBLIOTECA ===")
+        print("\n*** SISTEMA DE CONTROLE DE BIBLIOTECA ***")
         print("1. Cadastrar livro")
         print("2. Consultar livro")
         print("3. Alterar dados")
