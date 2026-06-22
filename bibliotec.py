@@ -1,11 +1,11 @@
-# Classe que define 'Livro'
+# Classe que define a estrutura de um objeto 'Livro'
 class Livro:
     # O método __init__ inicializa os atributos do livro quando um novo objeto é criado
     def __init__(self, titulo, autor, ano, codigo, status):
         self.titulo = titulo  # Armazena o nome da obra
         self.autor = autor    # Armazena o nome do autor
         self.ano = ano        # Armazena o ano de lançamento
-        self.codigo = codigo  # Armazena o ID
+        self.codigo = codigo  # Armazena o identificador único (ID)
         self.status = status  # Armazena se está 'disponível' ou 'emprestado'
 
 # Cadastrar livro
@@ -13,7 +13,7 @@ def cadastrar_livro(biblioteca):
     print("\n--- CADASTRAR LIVRO ---")
     codigo = input("Código (ID único): ")
    
-    # Percorre a lista para não existir dois livros com o mesmo código
+    # Percorre a lista para garantir que não existam dois livros com o mesmo código
     ja_existe = 0
     for livro in biblioteca:
         if livro.codigo == codigo:
@@ -93,7 +93,7 @@ def remover_livro(biblioteca):
             posicao = i
             break
            
-    # Se encontrado, usa o pop() para excluir o item da lista pelo índice
+    # Se encontrado, utiliza o método pop() para excluir o item da lista pelo índice
     if posicao != -1:
         biblioteca.pop(posicao)
         print("Livro removido com sucesso!")
@@ -102,7 +102,7 @@ def remover_livro(biblioteca):
 
 # Listar todos
 def listar_todos(biblioteca):
-    print("\n--- LISTAR TODOS OS LIVROS ---")
+    print("\n--- LISTAR TODOS OS LIVROS (ORDEM ALFABÉTICA) ---")
     
     if len(biblioteca) == 0:
         print("A biblioteca está vazia.")
